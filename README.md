@@ -373,4 +373,50 @@ Check for updates:
 ```
 sudo pacman -Syu
 ```
+### More entropy
+Check entropy available:
+```
+cat /proc/sys/kernel/random/entropy_avail
+```
+Install haveged:
+```
+sudo pacman -S haveged
+systemctl enable haveged.service
+systemctl start haveged.service
+```
+Then check again:
+```
+cat /proc/sys/kernel/random/entropy_avail
+```
+### Installing video drivers
+```
+sudo pacman -S xf86-video-intel mesa lib32-mesa
+```
+### Installing Xorg
+```
+sudo pacman -S xorg-server xorg-xinit xorg-xrandr
+```
+## Display Managers
+So far only GDM and SDDM works and can be configured properly.
 
+LXDM works but screen is rotated (No solution I know so far).
+
+I recommand SDDM.
+### SDDM
+Install packages:
+```
+sudo pacman -S sddm
+systemctl enable sddm.service
+```
+#### Configuration
+To edit config file:
+```
+sudo vim /usr/share/sddm/scripts/Xsetup
+```
+Add the following:
+```
+# Rotates screen and sets DPI
+xrandr --output eDP1 --rotate right --dpi 200
+```
+Save and quit.
+## Desktop Environments
