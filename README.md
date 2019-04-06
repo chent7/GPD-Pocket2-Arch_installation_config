@@ -223,7 +223,7 @@ useradd -m -G wheel username
 passwd username
 ```
 Replace `username` according with your username.
-#### What do these do?
+##### What do these do?
 `-m`: creates your home folder
 
 `-G wheel`: optional but recommanded, allows root privillages
@@ -317,5 +317,12 @@ vim /boot/loader/loader.conf
 ```
 Enter the following:
 ```
+default       arch
+auto-firmware no
+editor        no
+timeout       1
 ```
 Save and quit.
+###### What do these do?
+`default`: is the default entry to boot, we use `arch` because that's the entry we just created (`/boot/loader/entries/arch.conf`) for our system.
+
