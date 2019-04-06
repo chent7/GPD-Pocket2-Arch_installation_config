@@ -154,6 +154,8 @@ Activate the swap partition:
 swapon /dev/mmcblk0p2
 ```
 ### Installing Arch Linux
+Edit `/etc/pacman.d/mirrorlist` and place the mirror closest to your location on top.
+
 To install Arch Linux:
 ```
 pacstrap /mnt base base-devel dialog wpa_supplicant intel-ucode vim
