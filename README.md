@@ -170,5 +170,134 @@ pacstrap /mnt base base-devel dialog wpa_supplicant intel-ucode vim
 `intel-ucode`: this is the microcode for intel based CPUs.
 
 `vim`: optional, but makes your life easier later ~~(or harder)~~.
+### Fstab
+To generate the fstab file:
+```
+genfstab -U /mnt >> /mnt/etc/fstab
+```
+You need this so the system will know where to mount your drives.
+### Into your new system
+To change root into your Arch install:
+```
+arch-chroot /mnt
+```
+### Timezone
+To select our timezone:
+```
+ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
+hwclock --systohc
+```
+Replace `Region` and `City` for your location.
+### Locale
+Open up `locale.gen` in vim:
+```
+vim /etc/locale.gen
+```
+Uncomment any locales you need, save and quit with `:wq`.
 
+To generate them run:
+```
+locale-gen
+```
+### Language
+To select your display language, grab one of the locales from earlier eg:`en_US.UTF-8` and:
+```
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+```
+You generally want `utf8` as your encoding.
+### Host Name
+This will be the name of your Arch system:
+```
+echo yourhostname > /etc/hostname
+```
+Replace `yourhostname` with the host name you want.
+### Root Password
+To set a password for your root:
+```
+passwd
+```
+### Add a new user
+It's a bad idea to log in as root, you will want to create a new user.
+```
+useradd -m -G wheel username
+passwd username
+```
+Replace `username` according with your username.
+#### What do these do?
+`-m`: creates your home folder
 
+`-G wheel`: optional but recommanded, allows root privillages
+#### Creating user folders
+It's nice to have a downloads or music folder in your home directory.
+
+Some desktop environments or window managers don't create them, so we can create them manually here by installing `xdg-user-dirs`:
+```
+pacman -S xdg-user-dirs
+xdg-user-dirs-update
+```
+### Root privillages
+You will want to be able to run sudo commands:
+```
+visudo
+```
+Uncomment `%wheel ALL= (ALL) ALL` to run sudo commands with a password
+
+Uncomment `%wheel ALL=(ALL) NOPASSWD: ALL` to run sudo without prompting password
+### Console fonts
+This is a larger font, easier on the eyes :)
+```
+echo FONT=latarcyrheb-sun32 > /etc/vconsole.conf
+```
+### Installing bootloader
+__Important: Do not set bootloader timeout to 0, otherwise /etc/vconsole.conf settings will not load on the Pocket 2.__
+
+I like to use `GRUB`, but it does not display correctly on the Pocket 2.
+
+If you are dual-booting, I recommand using `systemd boot`.
+#### GRUB
+__Only install one bootloader, GRUB or Systemd Boot!__
+
+Install the necessary packages:
+```
+pacman -S grub efibootmgr
+```
+Install grub:
+```
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+```
+`--bootloader-id` is set to the name that shows up in the Bios.
+#### GRUB configuration
+Open the configuration file:
+```
+vim /etc/default/grub
+```
+Find `GRUB_CMDLINE_LINUX` and add `fbcon=rotate:1`, this will keep the console landscape after reboot.
+
+You can set the timeout by changing the value at `GRUB_TIMEOUT`, but remember not to set it to `0` if you want to keep our changes to `/etc/vconsole.conf`.
+
+Lastly, generate config file with:
+```
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+#### Systemd Boot
+__Only install one bootloader, GRUB or Systemd Boot!__
+
+Install systemd boot:
+```
+bootctl install
+```
+Bios entry will be `Linux Boot Manager`
+#### Systemd Boot configuration
+##### Create new entry
+We will need to manually create a new entry for our system:
+```
+vim /boot/loader/entries/arch.conf
+```
+Now type the following into `arch.conf`:
+```
+
+```
+Save and quit vim.
+###### What do these do?
+
+##### Configure bootloader
