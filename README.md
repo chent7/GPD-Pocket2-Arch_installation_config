@@ -356,7 +356,7 @@ __Log in as the user you created, not root__
 
 Reconnect WiFi:
 ```
-wifi-menu
+sudo wifi-menu
 ```
 We will need multilib repo for some packages:
 ```
