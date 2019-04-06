@@ -295,9 +295,27 @@ vim /boot/loader/entries/arch.conf
 ```
 Now type the following into `arch.conf`:
 ```
-
+title   Arch Linux
+linux   /vmlinuz-linux
+initrd  /intel-ucode.img
+initrd  /initramfs-linux.img
+options root=/dev/mmcblk0p3 rw quiet loglevel=3 vga=current rd.systemd.show_status=false fbcon=rotate:1
 ```
 Save and quit vim.
 ###### What do these do?
+`title`: is the entry name for this system, change it to whatever you want it to show up in the bootloader.
 
+`root=/dev/mmcblk0p3 rw`: set out root directory to read and write.
+
+`quiet loglevel=3 vga=current rd.systemd.show_status=false`: this stops the console from splitting out messages during boot, except the important ones of course.
+
+`fbcon=rotate:1`: to keep the console landscape.
 ##### Configure bootloader
+Now we want to configure the bootloader itself:
+```
+vim /boot/loader/loader.conf
+```
+Enter the following:
+```
+```
+Save and quit.
