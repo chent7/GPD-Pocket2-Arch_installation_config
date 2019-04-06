@@ -351,3 +351,26 @@ Unplug your USB, and turn your Pocket 2 back on.
 You should be greeted with the console within a minute.
 ## Postinstallation
 This is a good time to backup your new installation to another drive, as you may mess some settings up and wish to start over from here.
+
+__Log in as the user you created, not root__
+
+Reconnect WiFi:
+```
+wifi-menu
+```
+We will need multilib repo for some packages:
+```
+sudo vim /etc/pacman.conf
+```
+Uncomment:
+```
+[multilib]
+Include = /etc/pacman.d/mirrorlists
+```
+Save and quit.
+
+Check for updates:
+```
+sudo pacman -Syu
+```
+
