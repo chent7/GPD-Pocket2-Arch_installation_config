@@ -15,7 +15,7 @@
                                                                                                *       
 The complete guide to installing Arch and configuring Arch on the GPD Pocket 2, based on all available online resources I can find on the GPD Pocket 2.
 
-It is also relevant to other distros in the configuration parts.
+Steps performed here may also be relevant to other distros.
 
 I will do my best to explain everything ;)
 
@@ -253,9 +253,9 @@ __Important: Do not set bootloader timeout to 0, otherwise /etc/vconsole.conf se
 
 I like to use `GRUB`, but it does not display correctly on the Pocket 2.
 
-If you are dual-booting, I recommand using `systemd boot`.
+If you are dual-booting, I recommand using `systemd-boot`.
 #### GRUB
-__Only install one bootloader, GRUB or Systemd Boot!__
+__Only install one bootloader, GRUB or Systemd-boot!__
 
 Install the necessary packages:
 ```
@@ -279,10 +279,10 @@ Lastly, generate config file with:
 ```
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
-#### Systemd Boot
-__Only install one bootloader, GRUB or Systemd Boot!__
+#### Systemd-boot
+__Only install one bootloader, GRUB or Systemd-boot!__
 
-Install systemd boot:
+Install systemd-boot:
 ```
 bootctl install
 ```
@@ -325,4 +325,27 @@ timeout       1
 Save and quit.
 ###### What do these do?
 `default`: is the default entry to boot, we use `arch` because that's the entry we just created (`/boot/loader/entries/arch.conf`) for our system.
+
+`auto-firmware`: shows entry to boot into UEFI
+
+`editor`: is the kernel parameters editor, generally a good idea to disable.
+
+`timeout`: to keep our changes to `/etc/vconsole.conf` set to >= 1.
+### Restarting
+Logout of root from the new system back to the USB:
+```
+exit
+```
+Unmount partitions:
+```
+umount -R /mnt
+```
+Shut down:
+```
+shutdown now
+```
+Unplug your USB, and turn your Pocket 2 back on.
+
+You should be greeted with the console within a minute.
+## Postinstallation
 
