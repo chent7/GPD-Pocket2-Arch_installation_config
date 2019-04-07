@@ -1,4 +1,4 @@
-# Arch Linux on the GPD Pocket 2 (WIP).                                                                                                       
+# Arch Linux on the GPD Pocket 2                                                                                                       
                                                                                  (.                    
                                                                                 (((.                   
                                                                                (((((                   
