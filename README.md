@@ -26,12 +26,15 @@ Boot into the USB by going into the Bios, spam `Del` or hold `Fn + F12`.
 
 ~~Rememeber to boot into the `UEFI` partition.~~ (Not too important).
 
-### Rotating the console
+### Console
 Let's start by rotating the console.
 ```
 echo 1 > /sys/class/graphics/fbcon/rotate_all
 ```
-
+A more readable font:
+```
+setfont latarcyrheb-sun32
+```
 ### Internet
 Connect via WiFi or plug in your an Ethernet Adaptor.
 #### WiFi
