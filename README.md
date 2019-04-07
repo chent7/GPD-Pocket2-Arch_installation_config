@@ -415,8 +415,68 @@ sudo vim /usr/share/sddm/scripts/Xsetup
 ```
 Add the following:
 ```
-# Rotates screen and sets DPI
-xrandr --output eDP1 --rotate right --dpi 200
+# Select and rotates screen
+xrandr --output eDP1 --rotate right
 ```
 Save and quit.
+
+Now make a folder:
+```
+sudo mkdir /etc/sddm.conf.d
+```
+We are going to create two files:
+```
+sudo vim /etc/sddm.conf.d/dpi.conf
+```
+Add:
+```
+[X11]
+ServerArguments=-nolisten tcp -dpi 200
+```
+Remember you can change the DPI value as you see fit.
+
+Now create another file:
+```
+sudo vim /etc/sddm.conf.d/hidpi.conf
+```
+Add:
+```
+[X11]
+EnableHiDPI=true
+```
+Play with the settings, restart and see how sddm looks.
 ## Desktop Environments
+### Cinnamon
+```
+sudo pacman -S cinnamon
+```
+#### Configuration
+
+HiDPI:
+
+System Settings -> General -> Desktop Scaling -> User interface scaling: Double(Hi-DPI)
+
+Fonts Scaling:
+
+System Settings -> Font Selection -> Font Settings -> Text scaling factor: 1.2
+### Deepin
+```
+sudo pacman -S deepin
+```
+#### Configuration
+
+Control Center -> Display
+
+### Enlightenment
+```
+sudo pacman -S enlightenment
+```
+#### Configuration
+Done at startup
+### LXDE
+```
+sudo pacman -S lxde
+```
+#### Configuration
+Dont in KDE Control Panel
+### 
