@@ -502,3 +502,5 @@ systemctl enable NetworkManager
 systemctl start NetworkManager
 ```
 Network settings will appear in system tray.
+### Touchscreen
+(WIP)
