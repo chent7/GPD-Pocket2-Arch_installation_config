@@ -478,5 +478,24 @@ Done at startup
 sudo pacman -S lxde
 ```
 #### Configuration
-Dont in KDE Control Panel
-### 
+Done in KDE Control Panel
+### KDE Plasma
+My prefered DE.
+```
+sudo pacman -S plasma
+```
+#### Configuration
+There should be none :D
+## Final touches
+Remeber you can install applications for your desktop environments.
+
+To get WiFi working on Plasma (__Do not reboot during this process or you lose WiFi connectivity__):
+```
+systemctl disable netctl
+systemctl stop netctl
+sudo pacman -S networkmanager
+sudo pacman -R netctl
+systemctl enable NetworkManager
+systemctl start NetworkManager
+```
+Network settings will appear in system tray.
