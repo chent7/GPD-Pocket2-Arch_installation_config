@@ -436,6 +436,8 @@ Add:
 EnableHiDPI=true
 ```
 Play with the settings, restart and see how sddm looks.
+
+__Don't worry about the out of place fonts, if you don't want to use the default SDDM theme__
 ## Desktop Environments
 ### KDE Plasma
 Since we are using SDDM, settings we done previously will be kept in plasma.
