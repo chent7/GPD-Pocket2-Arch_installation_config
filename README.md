@@ -376,21 +376,6 @@ Check for updates:
 ```
 sudo pacman -Syu
 ```
-### More entropy
-Check entropy available:
-```
-cat /proc/sys/kernel/random/entropy_avail
-```
-Install haveged:
-```
-sudo pacman -S haveged
-systemctl enable haveged.service
-systemctl start haveged.service
-```
-Then check again:
-```
-cat /proc/sys/kernel/random/entropy_avail
-```
 ### Installing video drivers
 ```
 sudo pacman -S xf86-video-intel mesa lib32-mesa
@@ -505,3 +490,47 @@ systemctl enable NetworkManager
 systemctl start NetworkManager
 ```
 Network settings will now appear in system tray.
+## Final Touches
+Remember to install applications for your desktop environment!
+### Get a package manager for AUR
+I've switched to yay recently as there have been words that yaourt is discontinued.
+### Yay
+This will install yay.
+```
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+cd ..
+```
+You can remove the yay folder in your home directory afterwards.
+### More entropy
+If you experience a long boot time while waiting for SDDM to start, this is what you can do.
+
+Check entropy available:
+```
+cat /proc/sys/kernel/random/entropy_avail
+```
+Install haveged:
+```
+sudo pacman -S haveged
+systemctl enable haveged.service
+systemctl start haveged.service
+```
+Then check again:
+```
+cat /proc/sys/kernel/random/entropy_avail
+```
+### Preload
+Read more about preload on the [Arch Wiki](https://wiki.archlinux.org/index.php/Preload).
+
+It should help when using browser like chrome.
+```
+yay -S preload
+systemctl enable preload
+systemctl start preload
+```
+### NTFS-3G
+If you have trouble reading your NTFS disks:
+```
+sudo pacman -S ntfs-3g
+```
