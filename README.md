@@ -397,7 +397,7 @@ sudo pacman -S xf86-video-intel mesa lib32-mesa
 ```
 ### Installing Xorg
 ```
-sudo pacman -S xorg-server xorg-xinit xorg-xrandr
+sudo pacman -S xorg-server xorg-xinit xorg-xrandr xorg-xinput
 ```
 ## Display Managers
 So far only GDM and SDDM works and can be configured properly.
@@ -420,6 +420,9 @@ Add the following:
 ```
 # Select and rotates screen
 xrandr --output eDP1 --rotate right
+
+# Rotates the touchscreen
+xinput set-prop pointer:'Goodix Capacitive TouchScreen' 'Coordinate Transformation Matrix' 0 1 0 -1 0 1 0 0 1
 ```
 Save and quit.
 
@@ -501,6 +504,4 @@ sudo pacman -R netctl
 systemctl enable NetworkManager
 systemctl start NetworkManager
 ```
-Network settings will appear in system tray.
-### Touchscreen
-(WIP)
+Network settings will now appear in system tray.
