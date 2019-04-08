@@ -444,7 +444,7 @@ Since we are using SDDM, settings we done previously will be kept in plasma.
 
 Touchscreen works just as we configured previously.
 
-Cursor size and UI scale for applications such as steam can be done in system settings.
+Cursor size and UI scale for applications such as chrome can be done in system settings.
 ```
 sudo pacman -S plasma
 ```
