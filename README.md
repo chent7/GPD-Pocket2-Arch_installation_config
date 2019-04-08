@@ -452,6 +452,15 @@ EnableHiDPI=true
 ```
 Play with the settings, restart and see how sddm looks.
 ## Desktop Environments
+### KDE Plasma
+Since we are using SDDM, settings we done previously will be kept in plasma.
+
+Touchscreen works just as we configured previously.
+
+Cursor size and UI scale for applications such as steam can be done in system settings.
+```
+sudo pacman -S plasma
+```
 ### Cinnamon
 ```
 sudo pacman -S cinnamon
@@ -485,16 +494,7 @@ sudo pacman -S lxde
 ```
 #### Configuration
 Done in KDE Control Panel
-### KDE Plasma
-My prefered DE.
-```
-sudo pacman -S plasma
-```
-#### Configuration
-There should be none :D
-## Final touches
-Remeber you can install applications for your desktop environments.
-
+### Getting WiFi applet to work on most Desktop Environments
 To get WiFi working on Plasma (__Do not reboot during this process or you lose WiFi connectivity__):
 ```
 systemctl disable netctl
