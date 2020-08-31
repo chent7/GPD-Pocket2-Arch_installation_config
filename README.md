@@ -13,6 +13,8 @@
                                                                       ((((((,          ((((((*         
                                                                      ((/                    ((/        
                                                                                                *       
+## Installation for arch linux is outdated. However, this guide is still useful for touchscreen configuration.
+
 The complete guide to installing Arch and configuring Arch on the GPD Pocket 2, based on all available online resources I can find on the GPD Pocket 2.
 
 Steps performed here may also be relevant to other distros.
